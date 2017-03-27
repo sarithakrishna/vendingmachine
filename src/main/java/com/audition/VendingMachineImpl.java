@@ -4,9 +4,15 @@ import java.util.List;
 
 public class VendingMachineImpl implements VendingMachine {
 
+	private String defaultDisplayText = "Insert Coin";
+
 	public String insertCoin(Coin coin) {
 		// TODO Auto-generated method stub
-		return null;
+		if (coin.getValue() > 0) {
+			return null;
+		} else {
+			return defaultDisplayText;
+		}
 	}
 
 	public String selectItem(Item item) {
