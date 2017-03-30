@@ -71,8 +71,8 @@ public class VendingMachineImpl implements VendingMachine {
 			}
 		}
 		else {
-			state = State.DEFAULT;
-			throw new SoldOutException("Sold Out, Select another item");
+				state = State.DEFAULT;
+				throw new SoldOutException("Sold Out, Select another item");
 		}
 		return currentItem;
 	}
