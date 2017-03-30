@@ -16,7 +16,7 @@ public class TestVendingMachine {
 	}
 
 	@Test
-	public void testInsertCoinAssertEquals() {
+	public void testInsertCoinForNickelAssertEquals() {
 		Coin coin = new Coin(1.0, 0.5);
 		assertEquals(machine.insertCoin(coin), null);
 	}
