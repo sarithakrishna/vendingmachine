@@ -26,5 +26,11 @@ public class TestVendingMachine {
 		Coin coin = new Coin(1.0, 0.1);
 		assertEquals(machine.insertCoin(coin), "0.1");
 	}
+	
+	@Test
+	public void testInsertCoinForQuartedAssertEquals() {
+		Coin coin = new Coin(1.0, 0.25);
+		assertEquals(machine.insertCoin(coin), "0.25");
+	}
 
 }
