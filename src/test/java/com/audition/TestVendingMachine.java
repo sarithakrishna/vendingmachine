@@ -75,5 +75,16 @@ public class TestVendingMachine {
 		machine.insertCoin(new Coin(1.0, 0.50));
 		assertEquals(machine.selectItem(new Item("Chips", 0.50)), "Chips");
 	}
+	
+	@Test
+	public void testSelectItemForColaAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.25));
+		machine.insertCoin(new Coin(1.0, 0.25));
+		machine.insertCoin(new Coin(1.0, 0.25));
+		machine.insertCoin(new Coin(1.0, 0.25));
+		
+		assertEquals(machine.selectItem(new Item("Cola", 1.0)), "Cola");
+	}
+
 
 }
