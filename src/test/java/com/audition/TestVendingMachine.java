@@ -20,5 +20,11 @@ public class TestVendingMachine {
 		Coin coin = new Coin(1.0, 0.5);
 		assertEquals(machine.insertCoin(coin), "0.5");
 	}
+	
+	@Test
+	public void testInsertCoinForDimeAssertEquals() {
+		Coin coin = new Coin(1.0, 0.1);
+		assertEquals(machine.insertCoin(coin), "0.1");
+	}
 
 }
