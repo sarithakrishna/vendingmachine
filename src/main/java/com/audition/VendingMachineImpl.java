@@ -10,6 +10,7 @@ public class VendingMachineImpl implements VendingMachine {
 	private double currentItemPrice;
 	private String currentItem;
 	private State state;
+	private List<Coin> coins = new ArrayList<Coin>();
 
 	private static List<Coin> validCoin = new ArrayList<Coin>();
 
@@ -36,7 +37,8 @@ public class VendingMachineImpl implements VendingMachine {
 				return Double.toString(currentBalance);
 
 			} else {
-
+				coins.add(coin);
+				returnCoins();
 				throw new InvalidInsertCoinsException("Invalid Coin!, Insert nickels,dimes or quarters");
 
 			}
@@ -68,6 +70,10 @@ public class VendingMachineImpl implements VendingMachine {
 				throw new NotFullPaidException("Price not full paid, remaining :", inSufficientAmountBalance);
 			}
 		}
+		else {
+			state = State.DEFAULT;
+			throw new SoldOutException("Sold Out, Select another item");
+		}
 		return currentItem;
 	}
 
@@ -85,7 +91,10 @@ public class VendingMachineImpl implements VendingMachine {
 
 	public List<Coin> returnCoins() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Coin> coinReturn = coins;
+		currentBalance = new Double(0.0);
+		state = State.DEFAULT;	
+		return coinReturn;
 	}
 
 	// method to get currentBalance in the Vending Machine
