@@ -25,7 +25,10 @@ public class VendingMachineImpl implements VendingMachine {
 				return Double.toString(currentBalance);
 
 			} else {
-				return null;
+			
+				throw new InvalidInsertCoinsException("Invalid Coin!, Insert nickels,dimes or quarters");
+				
+				
 			}
 
 		} else {
