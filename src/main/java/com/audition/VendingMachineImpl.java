@@ -7,6 +7,9 @@ public class VendingMachineImpl implements VendingMachine {
 
 	private String defaultDisplayText = "Insert Coin";
 	private double currentBalance = new Double(0.0);
+	private double currentItemPrice;
+	private String currentItem;
+	private State state;
 
 	private static List<Coin> validCoin = new ArrayList<Coin>();
 
@@ -14,6 +17,14 @@ public class VendingMachineImpl implements VendingMachine {
 		validCoin.add(new Coin(1, 0.50));
 		validCoin.add(new Coin(1, 0.25));
 		validCoin.add(new Coin(1, 0.10));
+	}
+
+	private static List<Item> validItem = new ArrayList<Item>();
+
+	static {
+		validItem.add(new Item("Cola", new Double(1.0)));
+		validItem.add(new Item("Chips", new Double(0.50)));
+		validItem.add(new Item("Candy", new Double(0.65)));
 	}
 
 	public String insertCoin(Coin coin) {
@@ -37,7 +48,15 @@ public class VendingMachineImpl implements VendingMachine {
 
 	public String selectItem(Item item) {
 		// TODO Auto-generated method stub
-		return null;
+
+		currentItemPrice = item.getPrice();
+		currentItem = item.getName();
+
+		if (!currentItem.isEmpty() && validItem.contains(item)) {
+
+			state = State.ITEM_DISPOSED;
+		}
+		return currentItem;
 	}
 
 	public List<Coin> returnChange() {
