@@ -96,5 +96,13 @@ public class TestVendingMachine {
 
 		assertEquals(machine.selectItem(new Item("Candy", 0.65)), "Candy");
 	}
+	
+	@Test
+	public void testSelectItemWithInsufficientBalanceAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.10));
+		machine.insertCoin(new Coin(1.0, 0.10));
+		Item item = new Item("Chips", 0.50);
+		assertEquals(machine.selectItem(item), "Price not full paid, remaining: ");
+	}
 
 }
