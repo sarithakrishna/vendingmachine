@@ -2,6 +2,9 @@ package com.audition;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class TestVendingMachine {
@@ -114,5 +117,18 @@ public class TestVendingMachine {
 		assertEquals(machine.returnCoins(), "Invalid Coin!, Insert nickels, dimes or quarters");
 	}
 
+	
+	//TestCase for returnChange
+	
+	@Test
+	public void testSelectItemForChipsWithReturnChangeAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.25));
+		machine.insertCoin(new Coin(1.0, 0.50));
+		Item item = new Item("Chips", 0.50);
+		List<Coin> change = new ArrayList<Coin>();
+		change = machine.returnChange();
+		
+		assertEquals(change.contains(new Coin(1, 0.25)), true);
+	}
 	
 }
