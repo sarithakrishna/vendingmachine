@@ -49,4 +49,14 @@ public class TestVendingMachine {
 		assertEquals(new Double(1.0), machine.getAmount());
 	}
 	
+	@Test
+	public void testInsertMultipleValidCoinAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.25));
+		machine.insertCoin(new Coin(1.0, 0.5));
+		machine.insertCoin(new Coin(1.0, 0.1));
+		
+		assertEquals(new Double(0.85), machine.getAmount());
+	}
+	
+	
 }
