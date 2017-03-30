@@ -32,5 +32,11 @@ public class TestVendingMachine {
 		Coin coin = new Coin(1.0, 0.25);
 		assertEquals(machine.insertCoin(coin), "0.25");
 	}
+	
+	@Test
+	public void testInsertCoinForInvalidCoinAssertEquals() {
+		Coin coin = new Coin(1.0, 0.01);
+		assertEquals(machine.insertCoin(coin), "Invalid Coin!, Insert nickels,dimes or quarters");
+	}
 
 }
