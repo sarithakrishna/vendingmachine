@@ -105,4 +105,14 @@ public class TestVendingMachine {
 		assertEquals(machine.selectItem(item), "Price not full paid, remaining: ");
 	}
 
+	
+	//TestCase for returnCoins
+	
+	@Test
+	public void testInsertInvalidCoinToReturnCoinAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.01));
+		assertEquals(machine.returnCoins(), "Invalid Coin!, Insert nickels, dimes or quarters");
+	}
+
+	
 }
