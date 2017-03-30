@@ -8,6 +8,8 @@ public class TestVendingMachine {
 
 	VendingMachineImpl machine = new VendingMachineImpl();
 
+	// TestCases for Accept Coin
+
 	@Test
 	public void testDefaultDisplayAssertEquals() {
 		Coin coin = new Coin(0.0, 0.0);
@@ -20,19 +22,19 @@ public class TestVendingMachine {
 		Coin coin = new Coin(1.0, 0.5);
 		assertEquals(machine.insertCoin(coin), "0.5");
 	}
-	
+
 	@Test
 	public void testInsertCoinForDimeAssertEquals() {
 		Coin coin = new Coin(1.0, 0.1);
 		assertEquals(machine.insertCoin(coin), "0.1");
 	}
-	
+
 	@Test
 	public void testInsertCoinForQuarterAssertEquals() {
 		Coin coin = new Coin(1.0, 0.25);
 		assertEquals(machine.insertCoin(coin), "0.25");
 	}
-	
+
 	@Test
 	public void testInsertCoinForInvalidCoinAssertEquals() {
 		Coin coin = new Coin(1.0, 0.01);
@@ -45,26 +47,33 @@ public class TestVendingMachine {
 		machine.insertCoin(new Coin(1.0, 0.25));
 		machine.insertCoin(new Coin(1.0, 0.25));
 		machine.insertCoin(new Coin(1.0, 0.25));
-		
+
 		assertEquals(new Double(1.0), machine.getAmount());
 	}
-	
+
 	@Test
 	public void testInsertMultipleValidCoinAssertEquals() {
 		machine.insertCoin(new Coin(1.0, 0.25));
 		machine.insertCoin(new Coin(1.0, 0.5));
 		machine.insertCoin(new Coin(1.0, 0.1));
-		
+
 		assertEquals(new Double(0.85), machine.getAmount());
 	}
-	
+
 	@Test
 	public void testInsertInvalidCoinWithValidCoinAssertEquals() {
 		machine.insertCoin(new Coin(1.0, 0.25));
 		machine.insertCoin(new Coin(1.0, 0.01));
-		
+
 		assertEquals(new Double(0.26), "Invalid Coin!, Insert nickels,dimes or quarters");
 	}
-	
-	
+
+	// TestCases for Select Product
+
+	@Test
+	public void testSelectItemForChipsAssertEquals() {
+		machine.insertCoin(new Coin(1.0, 0.50));
+		assertEquals(machine.selectItem(new Item("Chips", 0.50)), "Chips");
+	}
+
 }
