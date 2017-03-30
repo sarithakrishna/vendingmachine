@@ -25,10 +25,9 @@ public class VendingMachineImpl implements VendingMachine {
 				return Double.toString(currentBalance);
 
 			} else {
-			
+
 				throw new InvalidInsertCoinsException("Invalid Coin!, Insert nickels,dimes or quarters");
-				
-				
+
 			}
 
 		} else {
@@ -49,6 +48,13 @@ public class VendingMachineImpl implements VendingMachine {
 	public List<Coin> returnCoins() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// method to get currentBalance in the Vending Machine
+
+	public Double getAmount() {
+
+		return currentBalance;
 	}
 
 }
