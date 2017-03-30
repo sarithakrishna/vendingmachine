@@ -11,6 +11,7 @@ public class VendingMachineImpl implements VendingMachine {
 	private String currentItem;
 	private State state;
 	private List<Coin> coins = new ArrayList<Coin>();
+	private double currentCoinValue;
 
 	private static List<Coin> validCoin = new ArrayList<Coin>();
 
@@ -32,7 +33,7 @@ public class VendingMachineImpl implements VendingMachine {
 		// TODO Auto-generated method stub
 		if (coin.getValue() > 0) {
 			if (validCoin.contains(coin)) {
-
+				currentCoinValue = coin.getValue();
 				currentBalance = currentBalance + coin.getValue();
 				return Double.toString(currentBalance);
 
@@ -64,15 +65,20 @@ public class VendingMachineImpl implements VendingMachine {
 					e.printStackTrace();
 				}
 
-			} else {
+			} else if (currentBalance > currentItemPrice) {
+
+				returnChange();
+
+			}
+
+			else {
 
 				double inSufficientAmountBalance = currentItemPrice - currentBalance;
 				throw new NotFullPaidException("Price not full paid, remaining :", inSufficientAmountBalance);
 			}
-		}
-		else {
-				state = State.DEFAULT;
-				throw new SoldOutException("Sold Out, Select another item");
+		} else {
+			state = State.DEFAULT;
+			throw new SoldOutException("Sold Out, Select another item");
 		}
 		return currentItem;
 	}
@@ -86,14 +92,54 @@ public class VendingMachineImpl implements VendingMachine {
 
 	public List<Coin> returnChange() {
 		// TODO Auto-generated method stub
-		return null;
+		double changeAmount = currentBalance - currentCoinValue;
+		List<Coin> change = getChange(changeAmount);
+		currentBalance = new Double(0.0);
+		state = State.DEFAULT;
+		return change;
+	}
+
+	private List<Coin> getChange(double amount) {
+		// TODO Auto-generated method stub
+		List<Coin> changes = new ArrayList<Coin>();
+
+		if (amount > 0) {
+
+			double balance = amount;
+			while (balance > 0) {
+
+				if ((balance >= 0.25) && (validCoin.contains(new Coin(1, 0.25)))) {
+
+					changes.add(new Coin(1, 0.25));
+					balance = balance - 0.25;
+					continue;
+
+				} else if ((balance >= 0.50) && (validCoin.contains(new Coin(1, 0.50)))) {
+
+					changes.add(new Coin(1, 0.50));
+					balance = balance - 0.50;
+					continue;
+				} else if ((balance >= 0.10) && (validCoin.contains(new Coin(1, 0.10)))) {
+
+					changes.add(new Coin(1, 0.10));
+					balance = balance - 0.10;
+					continue;
+				}
+				else {
+					
+					state = State.NO_CHANGE_DEFAULT;
+					throw new NotSufficientChangeException("Not Sufficient Change, please try another Item");
+				}
+			}
+		}
+		return changes;
 	}
 
 	public List<Coin> returnCoins() {
 		// TODO Auto-generated method stub
 		List<Coin> coinReturn = coins;
 		currentBalance = new Double(0.0);
-		state = State.DEFAULT;	
+		state = State.DEFAULT;
 		return coinReturn;
 	}
 
