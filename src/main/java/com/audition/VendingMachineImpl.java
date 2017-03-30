@@ -53,10 +53,29 @@ public class VendingMachineImpl implements VendingMachine {
 		currentItem = item.getName();
 
 		if (!currentItem.isEmpty() && validItem.contains(item)) {
+			if (currentBalance == currentItemPrice) {
 
-			state = State.ITEM_DISPOSED;
+				try {
+					productDisposed();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+
+				double inSufficientAmountBalance = currentItemPrice - currentBalance;
+				throw new NotFullPaidException("Price not full paid, remaining :", inSufficientAmountBalance);
+			}
 		}
 		return currentItem;
+	}
+
+	private void productDisposed() throws InterruptedException {
+		state = State.ITEM_DISPOSED;
+		currentBalance = new Double(0.0);
+		Thread.sleep(2000);
+		state = State.DEFAULT;
 	}
 
 	public List<Coin> returnChange() {
