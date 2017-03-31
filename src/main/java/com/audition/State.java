@@ -1,5 +1,10 @@
 package com.audition;
 
+/**
+ * State for Machine Display Message
+ * @author Saritha
+ *
+ */
 public enum State {
 
 	DEFAULT("INSERT COIN"), ITEM_DISPOSED("THANK YOU"), NO_CHANGE_DEFAULT("INSERT EXACT CHANGE ONLY");
