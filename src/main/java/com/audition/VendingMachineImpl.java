@@ -3,6 +3,11 @@ package com.audition;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of Vending Machine Interface
+ * @author saritha
+ *
+ */
 public class VendingMachineImpl implements VendingMachine {
 
 	private String defaultDisplayText = "Insert Coin";
