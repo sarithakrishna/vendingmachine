@@ -1,5 +1,10 @@
 package com.audition;
 
+/**
+ * Item inside Vending Machine
+ * @author saritha
+ *
+ */
 public class Item {
 	
 	public Item(String name, double price) {
