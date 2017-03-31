@@ -1,5 +1,10 @@
 package com.audition;
 
+/**
+ * Coins supported by Vending Machine
+ * @author saritha
+ *
+ */
 public class Coin {
 
 	private double size, weight;
