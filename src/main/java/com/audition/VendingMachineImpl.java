@@ -34,7 +34,7 @@ public class VendingMachineImpl implements VendingMachine {
 		validItem.add(new Item("Candy", new Double(0.65)));
 	}
 
-	public String insertCoin(Coin coin) {
+	public String insertCoin(Coin coin) throws InvalidInsertCoinsException {
 		// TODO Auto-generated method stub
 		if (coin.getValue() > 0) {
 			if (validCoin.contains(coin)) {
@@ -54,7 +54,7 @@ public class VendingMachineImpl implements VendingMachine {
 		}
 	}
 
-	public String selectItem(Item item) {
+	public String selectItem(Item item) throws NotFullPaidException {
 		// TODO Auto-generated method stub
 
 		currentItemPrice = item.getPrice();
@@ -104,7 +104,7 @@ public class VendingMachineImpl implements VendingMachine {
 		return change;
 	}
 
-	private List<Coin> getChange(double amount) {
+	private List<Coin> getChange(double amount) throws NotSufficientChangeException {
 		// TODO Auto-generated method stub
 		List<Coin> changes = new ArrayList<Coin>();
 
