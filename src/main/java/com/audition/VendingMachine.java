@@ -2,6 +2,11 @@ package com.audition;
 
 import java.util.List;
 
+/**
+ * Declare public API for Vending Machine
+ * @author saritha
+ *
+ */
 public interface VendingMachine {
 	
 	public String insertCoin(Coin coin);
